@@ -1,3 +1,4 @@
+
 #  python sync tool
 
 import os as os
@@ -66,5 +67,6 @@ sy = sync('/home/michael/Dropbox/', '/home/michael/TEST/')
 
 srcList, srcTime, destList, destTime = sy.main(sy.src, sy.dest)
 print('Sync Finished')
+
 
 
