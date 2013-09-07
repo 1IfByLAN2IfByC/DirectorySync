@@ -4,7 +4,7 @@ import os as os
 import datetime
 import time
 import shutil
-
+import pdb 
 
 class sync:
 
@@ -16,6 +16,7 @@ class sync:
   def checkRoot(self, src , dest):
     if not os.path.exists(dest):
         os.mkdir(dest)
+
 
   def syncDir(self, src, dest):
       srcList = os.listdir(src)
@@ -31,6 +32,13 @@ class sync:
           
           # IF THE DESTINATION PATH EXISTS 
           if os.path.exists(destList[i]) == True:
+              # pdb.set_trace()
+              if os.path.isfile(srcList[i]) == False:
+                os.chdir(srcList[i])
+
+              else:
+                pass
+
               destTime[i] = os.path.getmtime(destList[i])
               # IF THE DESTINATION IS OLDER
               if destTime[i] < srcTime[i]:
@@ -53,7 +61,6 @@ class sync:
       return srcList, srcTime, destList, destTime
 
           
-
   def main(self, src, dest):
     self.checkRoot(src, dest)
     srcList, srcTime, destList, destTime = self.syncDir(src,dest)
@@ -62,8 +69,8 @@ class sync:
     return srcList, srcTime, destList, destTime
 
 #sy = sync('c:\users\Arl_guest\desktop','c:\users\Arl_guest\desktop\TEST')
-sy = sync('/home/michael/Dropbox/', '/home/michael/TEST/')
-
+# sy = sync('/home/michael/Dropbox/', '/home/michael/TEST/')
+sy = sync('/users/michael/git/', '/users/michael/desktop/test/')
 srcList, srcTime, destList, destTime = sy.main(sy.src, sy.dest)
 print('Sync Finished')
 
